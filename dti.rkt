@@ -2,7 +2,7 @@
 (require racket/match)
 ;; (require racket/trace)
 
-;; A type inferencer for a small dependently-typed language
+;; A type inferencer and normalizer for a small dependently-typed language
 ;; Adopted from https://github.com/andrejbauer/andromeda
 
 (define lookup-ty
@@ -73,7 +73,7 @@
     (z . (N))
     (s . ((pi x N N)))
     (three . ((pi y (pi x N N) (pi z N N))
-              (lambda f (pi x1 N N) 
+              (lambda f (pi x1 N N)
                 (lambda x N (f (f (f x)))))))))
 
 (pretty-print (normalize ctx '((three (three s)) z)))
